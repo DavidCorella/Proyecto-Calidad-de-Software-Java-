@@ -15,7 +15,6 @@ public class Sistema_Inventario {
      */
     public static void main(String[] args) {
 
-    //hola
         
     }
     
