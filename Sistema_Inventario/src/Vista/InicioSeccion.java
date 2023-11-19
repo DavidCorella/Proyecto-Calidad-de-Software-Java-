@@ -89,7 +89,8 @@ public class InicioSeccion extends javax.swing.JFrame {
         txtUsuario.setBackground(new java.awt.Color(0, 102, 51));
         txtUsuario.setFont(new java.awt.Font("Mongolian Baiti", 0, 14)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(153, 153, 153));
-        txtUsuario.setText("Ingrese su nombre de Usuario");
+        txtUsuario.setText("Ingrese su Usuario");
+        txtUsuario.setToolTipText("");
 
         Separador.setBackground(new java.awt.Color(102, 102, 102));
         Separador.setForeground(new java.awt.Color(0, 0, 0));
@@ -138,13 +139,13 @@ public class InicioSeccion extends javax.swing.JFrame {
                 .addComponent(lblUsuario1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Separador, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblContraseña)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         panelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 470, 550));
