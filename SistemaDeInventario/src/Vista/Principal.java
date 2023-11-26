@@ -280,26 +280,6 @@ public class Principal extends javax.swing.JFrame {
         mostrarPanel(new Reporte());
     }//GEN-LAST:event_btnReportesActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-
-        /*  FlatLightLaf.setup();
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
-        }
-        UIManager.put("Button.arc", 999);
-         */
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Principal().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator Separador;
