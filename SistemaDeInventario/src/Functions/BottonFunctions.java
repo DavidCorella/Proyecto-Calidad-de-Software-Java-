@@ -11,12 +11,9 @@ public class BottonFunctions {
     }
     public boolean btnLogin(String user, String password){
         boolean login = false;
-        String [][] users = db.querySQLResultado("Select * from Users");
-        if(users!=null){
-            for(int i = 0; i < users.length; i++){
+        String [][] users = db.querySQLResultado("Select * from Users where user='".concat(user.concat("'")));
+        if(users.length!=0){
                 login = (users[0][0].compareTo(user))== 0 && (users[0][1].compareTo(password) == 0);
-                i = (login == true)? users.length + 1 : i;
-            }  
         }
         return login;
     }
