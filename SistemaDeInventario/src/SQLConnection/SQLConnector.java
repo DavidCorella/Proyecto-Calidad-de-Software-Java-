@@ -34,12 +34,11 @@ public class SQLConnector {
             prepareStatementQuery = getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             prepareStatementQuery.execute();
             resultSet = prepareStatementQuery.getGeneratedKeys();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(SQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-        
-        return true;
-        
     }
     
     public String[][] querySQLResultado(String query){

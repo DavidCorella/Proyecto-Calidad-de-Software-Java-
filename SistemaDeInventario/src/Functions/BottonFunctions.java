@@ -3,6 +3,7 @@ package Functions;
 import javax.swing.table.DefaultTableModel;
 
 import SQLConnection.SQLConnector;
+import javax.swing.JOptionPane;
 public class BottonFunctions {
     
     private SQLConnector db = null;
@@ -10,6 +11,7 @@ public class BottonFunctions {
     public BottonFunctions(){
         db = new SQLConnector();
     }
+    
     public boolean btnLogin(String user, String password){
         boolean login = false;
         String [][] users = db.querySQLResultado("Select * from Users where user='".concat(user.concat("'")));
@@ -32,6 +34,27 @@ public class BottonFunctions {
             }
         }
         return model;
+    }
+    
+    public boolean annadir(String codigo, String nombre, String categoria,String cantidad){
+        boolean complete = false;
+        int cantidadTotal = 0;
+        String result[][] = db.querySQLResultado("Select Cantidad from Inventario where Productos = '".concat(nombre).concat("' and Codigo = '".
+                concat(codigo).concat("'")));
+        if(result.length!=0){
+            cantidadTotal = Integer.parseInt(result[0][0])+Integer.parseInt(cantidad);
+            if(cantidadTotal>0){
+                complete = db.querySQL("Insert into Inventario values ('".concat(codigo).concat("','").concat(nombre).concat("','").
+                concat(categoria).concat("','").concat(String.valueOf(cantidadTotal)).concat("')"));
+            }else{
+                JOptionPane.showMessageDialog(null, "No hay la cantidad suficiente para eliminar", "Cantidad Insuficiente", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else{
+            complete = db.querySQL("Insert into Inventario values ('".concat(nombre).concat("','").concat(codigo).concat("','").
+                concat(categoria).concat("','").concat(String.valueOf(cantidad)).concat("')"));
+        }
+        return complete;
     }
     
     
