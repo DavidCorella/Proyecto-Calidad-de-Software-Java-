@@ -4,6 +4,7 @@ import javax.swing.table.DefaultTableModel;
 
 import SQLConnection.SQLConnector;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 public class BottonFunctions {
     
@@ -83,6 +84,26 @@ public class BottonFunctions {
         return complete;
     }
     
-   
+    public boolean crearReporte(){
+        LocalDate now =LocalDate.now();
+        boolean create = false;
+        String data [][] = null;
+        try{
+            PrintWriter report = new PrintWriter("./reporte.txt","UTF-8");
+            data = db.querySQLResultado("Select * from Inventario");
+            report.println("Reporte del dia:".concat(String.valueOf(now)));
+            if(data.length != 0){
+                for(int i = 0 ; i < data.length;i++){
+                    report.println(data[i][0].concat(" ").concat(data[i][1]).concat(" ").concat(data[i][2]).concat(" ").concat(data[i][3]));
+                }
+                report.close();
+            }
+            create = true;
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e,"Error al crear archivo",JOptionPane.ERROR_MESSAGE);
+        }
+        return create;
+    }
+    
     
 }
