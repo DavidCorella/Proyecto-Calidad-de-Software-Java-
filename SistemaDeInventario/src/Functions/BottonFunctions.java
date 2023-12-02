@@ -3,6 +3,7 @@ package Functions;
 import javax.swing.table.DefaultTableModel;
 
 import SQLConnection.SQLConnector;
+import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 public class BottonFunctions {
     
@@ -44,8 +45,8 @@ public class BottonFunctions {
         if(result.length!=0){
             cantidadTotal = Integer.parseInt(result[0][0])+Integer.parseInt(cantidad);
             if(cantidadTotal>0){
-                complete = db.querySQL("Insert into Inventario values ('".concat(codigo).concat("','").concat(nombre).concat("','").
-                concat(categoria).concat("','").concat(String.valueOf(cantidadTotal)).concat("')"));
+                complete = db.querySQL("Update Inventario set Cantidad='".concat(String.valueOf(cantidadTotal)).concat("' where Productos = '").concat(nombre).concat("' and Categoria = '").
+                concat(categoria).concat("' and Codigo = '").concat(String.valueOf(codigo)).concat("'"));
             }else{
                 JOptionPane.showMessageDialog(null, "No hay la cantidad suficiente para eliminar", "Cantidad Insuficiente", JOptionPane.ERROR_MESSAGE);
             }
@@ -57,5 +58,31 @@ public class BottonFunctions {
         return complete;
     }
     
+    public boolean elminar(String codigo, String nombre, String categoria,String cantidad){
+        boolean complete = false;
+        int cantidadTotal = 0;
+        String result[][] = db.querySQLResultado("Select Cantidad from Inventario where Productos = '".concat(nombre).concat("' and Codigo = '".
+                concat(codigo).concat("'")));
+        if(result.length!=0){
+            cantidadTotal = Integer.parseInt(result[0][0])-Integer.parseInt(cantidad);
+            if(cantidadTotal>0){
+                complete = db.querySQL("Update Inventario set Cantidad='".concat(String.valueOf(cantidadTotal)).concat("' where Productos='").concat(nombre).concat("' and Categoria='").
+                concat(categoria).concat("'"));
+            }else{
+                if(cantidadTotal==0){
+                    complete = db.querySQL("delete from Inventario where Productos='".concat(nombre).concat("' and Codigo='").concat(codigo).concat("' and Categoria ='").
+                            concat(categoria).concat("'"));
+                }else{
+                JOptionPane.showMessageDialog(null, "No hay la cantidad suficiente para eliminar", "Cantidad Insuficiente", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "El producto no existe", "Inexistente", JOptionPane.ERROR_MESSAGE);              
+        }
+        return complete;
+    }
+    
+   
     
 }

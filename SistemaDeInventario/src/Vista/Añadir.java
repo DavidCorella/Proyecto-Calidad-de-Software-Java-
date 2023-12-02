@@ -56,12 +56,6 @@ public class Añadir extends javax.swing.JPanel {
 
         lblAñadirCategoria.setText("Categoria");
 
-        txtAñadirCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAñadirCategoriaActionPerformed(evt);
-            }
-        });
-
         btnAñadir.setText("Añadir");
         btnAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,15 +65,15 @@ public class Añadir extends javax.swing.JPanel {
 
         lblAñadirCantidad.setText("Cantidad");
 
-        txtAñadirCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAñadirCantidadActionPerformed(evt);
-            }
-        });
-
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         lblEliminarCodigo.setText("Codigo");
+
+        txtEliminarCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEliminarCodigoKeyTyped(evt);
+            }
+        });
 
         lblEliminarNomProducto.setText("Nombre del Producto");
 
@@ -87,19 +81,12 @@ public class Añadir extends javax.swing.JPanel {
 
         lblEliminarCantidad.setText("Cantidad");
 
-        txtEliminarCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEliminarCategoriaActionPerformed(evt);
-            }
-        });
-
-        txtEliminarCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEliminarCantidadActionPerformed(evt);
-            }
-        });
-
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         lblImgAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/AñadirProducto.png"))); // NOI18N
 
@@ -252,22 +239,6 @@ public class Añadir extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtAñadirCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAñadirCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAñadirCategoriaActionPerformed
-
-    private void txtAñadirCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAñadirCantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAñadirCantidadActionPerformed
-
-    private void txtEliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEliminarCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEliminarCategoriaActionPerformed
-
-    private void txtEliminarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEliminarCantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEliminarCantidadActionPerformed
-
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
         if(!txtAñadirCodigo.getText().equals("")&&!txtAñadirNomProducto.getText().equals("")&&!txtAñadirCategoria.getText().equals("")&&!txtAñadirCantidad.getText().equals("")){
             botton.annadir(this.txtAñadirCodigo.getText(), this.txtAñadirNomProducto.getText(),this.txtAñadirCategoria.getText(),this.txtAñadirCantidad.getText());
@@ -292,6 +263,31 @@ public class Añadir extends javax.swing.JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_txtAñadirCodigoKeyTyped
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if(!txtEliminarCodigo.getText().equals("")&&!txtEliminarNomProducto.getText().equals("")&&!txtEliminarCategoria.getText().equals("")&&!txtEliminarCantidad.getText().equals("")){
+            botton.elminar(this.txtEliminarCodigo.getText(), this.txtEliminarNomProducto.getText(),this.txtEliminarCategoria.getText(),this.txtEliminarCantidad.getText());
+            this.txtEliminarCantidad.setText("");
+            this.txtEliminarCategoria.setText("");
+            this.txtEliminarCodigo.setText("");
+            this.txtEliminarNomProducto.setText("");
+        }   
+        else
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos","Faltan Datos",JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtEliminarCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEliminarCodigoKeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        if (!numeros)
+        {
+            evt.consume();
+        }
+
+        if (this.txtAñadirCodigo.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEliminarCodigoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
