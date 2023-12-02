@@ -7,17 +7,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 
-/**
- *
- * @author Jefferson
- */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
     public Principal() {
         initComponents();
          establecerDia();
@@ -25,28 +17,20 @@ public class Principal extends javax.swing.JFrame {
           initContenido();
     }
 
-   
-    
-
     private void establecerDia() {
        LocalDate now =LocalDate.now();
        Locale spanishLocale = new Locale("es", "ES");
         lblDia.setText(now.format(DateTimeFormatter.ofPattern("'Hoy es' EEE dd 'de' MMM 'de' yyy",spanishLocale)));
     } 
 
-    private void initContenido(){
-        
+    private void initContenido(){  
         mostrarPanel(new Principal2());
-        
     }
     
     public void mostrarPanel(JPanel p){
-        
-       // Principal2 p2 = new Principal2();
         p.setSize(730,440);
         p.setLocation(0,0);
-        
-        contenido.removeAll();;
+        contenido.removeAll();
         contenido.add(p);
         contenido.revalidate();
         contenido.repaint();

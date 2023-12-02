@@ -2,12 +2,8 @@
 package Vista;
 import Functions.BottonFunctions;
 import javax.swing.JOptionPane;
-
 import javax.swing.JPanel;
-/**
- *
- * @author Jefferson
- */
+
 public class Login extends javax.swing.JFrame {
 
     private Principal principal = null;

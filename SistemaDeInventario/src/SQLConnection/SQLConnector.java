@@ -1,7 +1,5 @@
 
 package SQLConnection;
-
-import com.mysql.cj.jdbc.result.ResultSetMetaData;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class SQLConnector {
     
@@ -23,7 +22,7 @@ public class SQLConnector {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = (Connection) DriverManager.getConnection(URLSERVER, USER, PASSWORD);
         }catch(Exception e){
-            System.out.println("Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
         }
         return connection;
     }
@@ -68,6 +67,7 @@ public class SQLConnector {
         }
         catch (SQLException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
         }
         return resultQuery;
     }
