@@ -1,3 +1,2 @@
-Reporte del dia:2023-12-01
-Carro 33 auto 5
-NAranja 400 Fruta 2
+Reporte del dia:2023-12-03
+Fresa 100 Fruta 40
